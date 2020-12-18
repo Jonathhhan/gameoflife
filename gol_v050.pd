@@ -1,0 +1,552 @@
+#N canvas 1238 68 523 533 10;
+#N canvas 1096 124 781 528 \$0-grid 0;
+#X obj 10 10 cnv 15 500 500 empty empty empty 20 12 0 14 -257985 -66577
+0;
+#X obj 35 20 cnv 15 450 480 empty empty Game_of_Life 120 30 0 30 -4032
+-66577 0;
+#X obj 144 281 bng 15 250 50 0 \$0-Reset empty Reset 17 7 0 10 -257985
+-1 -1;
+#X obj 144 255 bng 15 250 50 0 \$0-Save_Pattern empty Save 17 7 0 10
+-257985 -1 -1;
+#X obj 144 203 bng 15 250 50 0 \$0-Copy_Pattern empty Copy 17 7 0 10
+-257985 -1 -1;
+#X obj 144 229 bng 15 250 50 0 \$0-Paste_Pattern empty Paste 17 7 0
+10 -257985 -1 -1;
+#X obj 144 307 cnv 15 270 60 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 148 331 tgl 15 1 \$0-Living_Cell_1 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 164 331 tgl 15 1 \$0-Living_Cell_2 empty empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 180 331 tgl 15 1 \$0-Living_Cell_3 empty empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 196 331 tgl 15 1 \$0-Living_Cell_4 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 212 331 tgl 15 1 \$0-Living_Cell_5 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 228 331 tgl 15 1 \$0-Living_Cell_6 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 244 331 tgl 15 1 \$0-Living_Cell_7 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 260 331 tgl 15 1 \$0-Living_Cell_8 empty empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 148 347 tgl 15 1 \$0-Dead_Cell_1 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 164 347 tgl 15 1 \$0-Dead_Cell_2 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 180 347 tgl 15 1 \$0-Dead_Cell_3 empty empty 17 7 0 10 -261234
+-1 -1 1 1;
+#X obj 196 347 tgl 15 1 \$0-Dead_Cell_4 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 212 347 tgl 15 1 \$0-Dead_Cell_5 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 228 347 tgl 15 1 \$0-Dead_Cell_6 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 244 347 tgl 15 1 \$0-Dead_Cell_7 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 260 347 tgl 15 1 \$0-Dead_Cell_8 empty empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 148 311 bng 15 250 50 0 \$0-Iterate empty Iterate 17 7 0 10
+-257985 -1 -1;
+#X obj 526 94 nbx 5 14 1 1000 0 0 empty \$0-gridNumX gridNumX 0 -8
+0 10 -257985 -1 -1 75 256;
+#X obj 546 128 nbx 5 14 1 1000 0 0 empty \$0-gridNumY gridNumY 0 -8
+0 10 -257985 -1 -1 50 256;
+#X obj 526 339 ofelia d -k \$0-main;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; \; local a = ofelia \; local canvas = ofCanvas(this) \;
+local clock = ofClock(this \, "setup") \; local fontDir = canvas:getDir()
+.. "/data/" \; local printInterval = ofTrueTypeFont() \; local x \,
+y \, i \, j previousTime \, printTime = 0 \, 0 \, 0 \, 0 \; local rectangle
+\, color = ofDrawRectangle \, ofSetColor \; a.fboCells = ofFbo() \;
+a.fboLines = ofFbo() \; a.matrix \, a.nMatrix \, a.Living_Cells \,
+a.Dead_Cells = {} \, {} \, {} \, {} \; a.gridNumX \, a.gridNumY = 1
+\, 1 \; \; \; function a.new() \; ofWindow.addListener("setup" \, this)
+\; ofWindow.addListener("draw" \, this) \; ofWindow.addListener("mousePressed"
+\, this) \; window:setPosition(30 \, 100) \; window:setSize(1200 \,
+800) \; if ofWindow.exists then \; clock:delay(0) \; else \; window:create()
+\; end \; end \; \; \; function a.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("mousePressed"
+\, this) \; end \; \; \; function a.setup() \; ofSetWindowTitle("Game
+of Life") \; ofBackground(255) \; printInterval:load(fontDir .. "DejaVuSansMono.ttf"
+\, 32) \; a.fboCells:allocate(ofGetWidth() \, ofGetHeight()) \; a.fboLines:allocate(ofGetWidth()
+\, ofGetHeight()) \; end \; \; \; function a.draw() \; color(255) \;
+if ofelia.sequence == 1 then \; currentTime = ofGetElapsedTimeMillis()
+\; if currentTime - previousTime >= ofelia.interval then \; print("ms:"
+\, currentTime - previousTime) \; printTime = currentTime - previousTime
+\; previousTime = currentTime \; a.conway() \; end \; end \; a.fboCells:draw(0
+\, 0) \; a.fboLines:draw(0 \, 0) \; color(0) \; printInterval:drawString("ms:"..printTime
+\, 80 \, 750) \; end \; \; \; function a.mousePressed() \; \; x = (ofGetMouseX()
++ a.gridSizeX) // a.gridSizeX \; y = (ofGetMouseY() + a.gridSizeY)
+// a.gridSizeY \; a.fboCells:beginFbo() \; if a.matrix[a.gridNumY *
+x - a.gridNumY + y - 1] == nil then \; a.matrix[a.gridNumY * x - a.gridNumY
++ y - 1] = true \; \; color(0) \; rectangle(x * a.gridSizeX - a.gridSizeX
+\, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \;
+\; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
+\; a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1] = a.nMatrix[a.gridNumY
+* x - a.gridNumY + y - 1] - 1 \; \; else \; a.matrix[a.gridNumY * x
+- a.gridNumY + y - 1] = nil \; color(255) \; rectangle(x * a.gridSizeX
+- a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY)
+\; \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end
+\; a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1] = a.nMatrix[a.gridNumY
+* x - a.gridNumY + y - 1] + 1 \; \; end \; a.fboCells:endFbo() \; end
+\; \; \; function a.gridSize() \; \; ofSetLineWidth(2) \; a.matrix
+= {} \; a.nMatrix = {} \; a.gridSizeX \, a.gridSizeY = ofGetWidth()
+/ a.gridNumX \, ofGetHeight() / a.gridNumY \; \; a.fboLines:beginFbo()
+\; ofClear(0) \; ofSetColor(0) \; for x = 1 \, a.gridNumX +1 do \;
+for y = 1 \, a.gridNumY +1 do \; local posX \, posY = (x - 1) * a.gridSizeX
+\, (y - 1) * a.gridSizeY \; ofDrawLine(- 1 \, posY \, ofGetWidth()
+\, posY) \; ofDrawLine(posX \, - 1 \, posX \, ofGetHeight()) \; end
+\; end \; a.fboLines:endFbo() \; \; a.fboCells:beginFbo() \; ofClear(0)
+\; a.fboCells:endFbo() \; \; end \; \; \; function a.Reset() \; \;
+a.nMatrix = {} \; a.matrix = {} \; a.fboCells:beginFbo() \; ofClear(0)
+\; a.fboCells:endFbo() \; \; end \; \;;
+#X msg 526 235 gridNumY \$1 \, gridSize;
+#X obj 526 256 s \$0-main;
+#X obj 526 214 s \$0-main;
+#N canvas 710 613 662 286 pattern 0;
+#X obj 253 75 bng 15 250 50 0 empty \$0-Copy_Pattern Copy_Pattern 17
+7 0 10 -257985 -1 -1;
+#X obj 254 136 bng 15 250 50 0 empty \$0-Paste_Pattern Paste_Pattern
+17 7 0 10 -257985 -1 -1;
+#X obj 253 95 ofelia d -c11 -k \$0-setMatrix2;
+#A __set local a = require("\$0-main") \; \; function ofelia.bang()
+\; local tab = {} \; tab[1] = a.gridNumX \; tab[2] = a.gridNumY \;
+for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
+\; return tab \; end \;;
+#X obj 44 162 ofelia d -c11 -k \$0-setMatrix;
+#A __set local a = require("\$0-main") \; \; function ofelia.bang()
+\; local tab = {} \; tab[1] = a.gridNumX \; tab[2] = a.gridNumY \;
+for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
+\; return tab \; end \;;
+#X obj 44 142 bng 15 250 50 0 empty \$0-Save_Pattern Save_Pattern 17
+7 0 10 -257985 -1 -1;
+#X obj 79 32 hradio 15 1 0 8 empty \$0-Pattern Pattern 0 -8 0 10 -257985
+-1 -1 1;
+#X obj 106 115 ofelia d -k \$0-getArray;
+#A __set local a = require("\$0-main") \; \; local rectangle \, color
+= ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
+= 0 \, 0 \, 0 \, 0 \, 0 \; \; function M.bang() \; \; if ofelia.presetList
+~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; \; \;
+a.fboCells:beginFbo() \; ofClear(0) \; color(0) \; for k = 1 \, #ofelia.presetList
+do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
+// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
+* a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
+\, a.gridSizeY) \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
+\; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
+- 1 \; end \; \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end
+\; end \;;
+#X obj 44 204 text define -k \$0-preset;
+#A set 150 100 7552 7553 6947 7748 6949 7847 7849 7947 7148 7949 7343
+7344 7442 7544 7445 8048 7543 7352 7353 6848 7451 7047 7049 7454 7455
+\; 75 50 2176 1921 1922 1830 1831 1576 1930 1675 1883 1677 1870 2127
+2026 1873 1882 2075 1822 2077 1879 1625 1627 1931 1821 1726 2125 \;
+10 20 \; 10 20 \; 300 200 27905 28898 27299 28900 27906 28103 28104
+27902 27896 29099 28095 27098 27694 27695 26699 26898 28499 26900 27893
+27704 27100 28698 28700 27703 28094 \; 300 200 28101 28500 28501 28302
+28301 \; 40 20 388 428 408 \; 300 200 \; 10 10 32 65 34 67 35 53 37
+23 56 73 26 43 76 46 62 64 \; 300 200 \; 75 50 1521 1171 1421 1471
+\; 0 0 \; 0 0 \; 0 0 \; 0 0 \; 30 20 288 329 290 268 309 270 249 \;
+;
+#X obj 106 73 text get \$0-preset;
+#X obj 79 52 t f f;
+#X obj 44 183 text set \$0-preset;
+#X obj 253 115 text set \$0-copy;
+#N canvas 0 50 450 393 routeList 0;
+#X obj 111 256 list prepend presetList;
+#X obj 138 298 list trim;
+#X obj 111 277 t b l;
+#X obj 168 109 list split 2;
+#X obj 195 172 spigot;
+#X obj 228 151 > 2;
+#X obj 228 130 list length;
+#X obj 195 193 unpack;
+#X obj 195 235 s \$0-gridNumXpreset;
+#X obj 228 214 s \$0-gridNumYpreset;
+#X obj 168 151 list;
+#X obj 111 67 route bang;
+#X obj 168 88 t l l;
+#X obj 168 130 t b l;
+#X obj 111 324 outlet;
+#X obj 111 46 inlet;
+#X connect 0 0 2 0;
+#X connect 1 0 14 0;
+#X connect 2 0 14 0;
+#X connect 2 1 1 0;
+#X connect 3 0 13 0;
+#X connect 3 1 10 1;
+#X connect 4 0 7 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 11 1 12 0;
+#X connect 12 0 3 0;
+#X connect 12 1 6 0;
+#X connect 13 0 10 0;
+#X connect 13 1 4 0;
+#X connect 15 0 11 0;
+#X restore 106 94 pd routeList;
+#N canvas 0 50 450 393 routeList 0;
+#X obj 111 256 list prepend presetList;
+#X obj 138 298 list trim;
+#X obj 111 277 t b l;
+#X obj 168 109 list split 2;
+#X obj 195 172 spigot;
+#X obj 228 151 > 2;
+#X obj 228 130 list length;
+#X obj 195 193 unpack;
+#X obj 195 235 s \$0-gridNumXpreset;
+#X obj 228 214 s \$0-gridNumYpreset;
+#X obj 168 151 list;
+#X obj 111 67 route bang;
+#X obj 168 88 t l l;
+#X obj 168 130 t b l;
+#X obj 111 324 outlet;
+#X obj 111 46 inlet;
+#X connect 0 0 2 0;
+#X connect 1 0 14 0;
+#X connect 2 0 14 0;
+#X connect 2 1 1 0;
+#X connect 3 0 13 0;
+#X connect 3 1 10 1;
+#X connect 4 0 7 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 11 1 12 0;
+#X connect 12 0 3 0;
+#X connect 12 1 6 0;
+#X connect 13 0 10 0;
+#X connect 13 1 4 0;
+#X connect 15 0 11 0;
+#X restore 254 198 pd routeList;
+#X obj 254 219 ofelia d -k \$0-getArray;
+#A __set local a = require("\$0-main") \; \; local rectangle \, color
+= ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
+= 0 \, 0 \, 0 \, 0 \, 0 \; \; function M.bang() \; \; if ofelia.presetList
+~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; \; a.fboCells:beginFbo()
+\; ofClear(0) \; color(0) \; for k = 1 \, #ofelia.presetList do \;
+a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k] //
+a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
+* a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
+\, a.gridSizeY) \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
+\; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
+- 1 \; end \; \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end
+\; end \;;
+#X obj 254 177 text get \$0-copy;
+#X msg 254 156 0;
+#X obj 442 220 text set \$0-preset 100;
+#X msg 442 200 0 0;
+#X obj 469 137 text delete \$0-preset;
+#X obj 442 179 until;
+#X msg 442 158 16;
+#X obj 442 95 t b b;
+#X obj 442 75 bng 15 250 50 0 empty empty delete 17 7 0 10 -258113
+-1 -1;
+#X msg 469 116 -1;
+#X obj 44 225 text define \$0-copy;
+#X connect 0 0 2 0;
+#X connect 1 0 16 0;
+#X connect 2 0 11 0;
+#X connect 3 0 10 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 8 0 12 0;
+#X connect 9 0 10 1;
+#X connect 9 1 8 0;
+#X connect 12 0 6 0;
+#X connect 13 0 14 0;
+#X connect 15 0 13 0;
+#X connect 16 0 15 0;
+#X connect 18 0 17 0;
+#X connect 20 0 18 0;
+#X connect 21 0 20 0;
+#X connect 22 0 21 0;
+#X connect 22 1 24 0;
+#X connect 23 0 22 0;
+#X connect 24 0 19 0;
+#X restore 526 360 pd pattern;
+#X obj 526 277 bng 15 250 50 0 empty \$0-Reset Reset 17 7 0 10 -257985
+-1 -1;
+#X msg 526 297 Reset;
+#X obj 526 318 s \$0-main;
+#X obj 212 311 tgl 15 1 \$0-Sequence empty Sequence 17 7 0 10 -257985
+-1 -1 0 1;
+#X msg 671 380 interval \$1;
+#X obj 671 361 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-Interval Interval
+0 -8 0 10 -257985 -1 -1 10 256;
+#X msg 671 235 conway;
+#X msg 671 303 sequence \$1;
+#X obj 671 283 tgl 15 0 empty \$0-Sequence Sequence 17 7 0 10 -257985
+-1 -1 0 1;
+#X obj 671 215 bng 15 250 50 0 empty \$0-Iterate Iterate 17 7 0 10
+-257985 -1 -1;
+#X obj 296 332 nbx 5 14 10 1000 0 1 \$0-Interval empty Interval 56
+7 0 10 -257985 -1 -1 10 256;
+#X obj 671 401 s \$0-main;
+#X obj 671 256 s \$0-main;
+#X obj 671 324 s \$0-main;
+#N canvas 1390 771 376 127 conway 0;
+#X obj 100 32 ofelia d -k \$0-conway;
+#A __set local a = require("\$0-main") \; \; local nMatrixCopy = {}
+\; local rectangle \, color = ofDrawRectangle \, ofSetColor \; local
+x \, y \, i \, j \, k \, v \, count = 0 \, 0 \, 0 \, 0 \, 0 \, 0 \,
+0 \; \; function a.conway() \; \; nMatrixCopy = {} \; count = 0 \;
+for k \, v in pairs (a.nMatrix) do \; nMatrixCopy[k] = v \; count =
+count + 1 \; end \; print("calculated cells:" \, count) \; count =
+0 \; \; a.fboCells:beginFbo() \; for k \, v in pairs (nMatrixCopy)
+do \; x = k // a.gridNumY + 1 \; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[nMatrixCopy[k]]
+== nil and a.matrix[k] == true then \; a.matrix[k] = nil \; for i =
+-2 \, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY * ((x + i)
+% a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x
++ i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end \; a.nMatrix[k]
+= a.nMatrix[k] + 1 \; count = count + 1 \; \; color(255) \; rectangle(x
+* a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
+\, a.gridSizeY) \; \; elseif a.Dead_Cells[nMatrixCopy[k]] == true and
+a.matrix[k] == nil then \; a.matrix[k] = true \; for i = -2 \, 0 do
+\; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY * ((x +
+i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
+* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
+\; a.nMatrix[k] = a.nMatrix[k] - 1 \; count = count + 1 \; \; color(0)
+\; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY
+\, a.gridSizeX \, a.gridSizeY) \; end \; \; end \; a.fboCells:endFbo()
+\; \; for k \, v in pairs (a.nMatrix) do \; if a.nMatrix[k] == 0 and
+a.matrix[k] == nil then \; a.nMatrix[k] = nil \; end \; end \; \; print("changed
+cells:" \, count) \; end \; \;;
+#N canvas 39 693 394 289 Living_Cells 0;
+#X obj 56 27 tgl 15 0 empty \$0-Living_Cell_1 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 131 27 tgl 15 0 empty \$0-Living_Cell_2 empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 207 27 tgl 15 0 empty \$0-Living_Cell_3 empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 283 27 tgl 15 0 empty \$0-Living_Cell_4 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 56 131 tgl 15 0 empty \$0-Living_Cell_5 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 131 131 tgl 15 0 empty \$0-Living_Cell_6 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 207 131 tgl 15 0 empty \$0-Living_Cell_7 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 283 131 tgl 15 0 empty \$0-Living_Cell_8 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X msg 56 68 1;
+#X obj 56 47 t b f;
+#X obj 56 89 pack;
+#X obj 131 47 t b f;
+#X obj 131 89 pack;
+#X msg 131 68 2;
+#X obj 207 47 t b f;
+#X obj 207 89 pack;
+#X msg 207 68 3;
+#X obj 283 47 t b f;
+#X obj 283 89 pack;
+#X msg 283 68 4;
+#X obj 56 151 t b f;
+#X obj 56 193 pack;
+#X msg 56 172 5;
+#X obj 131 151 t b f;
+#X obj 131 193 pack;
+#X msg 131 172 6;
+#X obj 207 151 t b f;
+#X obj 207 193 pack;
+#X msg 207 173 7;
+#X obj 283 151 t b f;
+#X obj 283 193 pack;
+#X msg 283 173 8;
+#X obj 56 235 ofelia d -k \$0-lCells;
+#A __set local a = require("\$0-main") \; function ofelia.list(l) \;
+if l[2] == 1 then \; a.Living_Cells[l[1]] = true \; else \; a.Living_Cells[l[1]]
+= nil \; end \; end \;;
+#X obj 56 110 s \$0-lCells;
+#X obj 131 110 s \$0-lCells;
+#X obj 56 214 s \$0-lCells;
+#X obj 283 110 s \$0-lCells;
+#X obj 207 110 s \$0-lCells;
+#X obj 207 214 s \$0-lCells;
+#X obj 283 214 s \$0-lCells;
+#X obj 131 214 s \$0-lCells;
+#X connect 0 0 9 0;
+#X connect 1 0 11 0;
+#X connect 2 0 14 0;
+#X connect 3 0 17 0;
+#X connect 4 0 20 0;
+#X connect 5 0 23 0;
+#X connect 6 0 26 0;
+#X connect 7 0 29 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 0;
+#X connect 9 1 10 1;
+#X connect 10 0 33 0;
+#X connect 11 0 13 0;
+#X connect 11 1 12 1;
+#X connect 12 0 34 0;
+#X connect 13 0 12 0;
+#X connect 14 0 16 0;
+#X connect 14 1 15 1;
+#X connect 15 0 37 0;
+#X connect 16 0 15 0;
+#X connect 17 0 19 0;
+#X connect 17 1 18 1;
+#X connect 18 0 36 0;
+#X connect 19 0 18 0;
+#X connect 20 0 22 0;
+#X connect 20 1 21 1;
+#X connect 21 0 35 0;
+#X connect 22 0 21 0;
+#X connect 23 0 25 0;
+#X connect 23 1 24 1;
+#X connect 24 0 40 0;
+#X connect 25 0 24 0;
+#X connect 26 0 28 0;
+#X connect 26 1 27 1;
+#X connect 27 0 38 0;
+#X connect 28 0 27 0;
+#X connect 29 0 31 0;
+#X connect 29 1 30 1;
+#X connect 30 0 39 0;
+#X connect 31 0 30 0;
+#X restore 100 53 pd Living_Cells;
+#N canvas 445 695 407 287 Dead_Cells 0;
+#X obj 56 27 tgl 15 0 empty \$0-Dead_Cell_1 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 131 27 tgl 15 0 empty \$0-Dead_Cell_2 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 207 27 tgl 15 0 empty \$0-Dead_Cell_3 empty 17 7 0 10 -261234
+-1 -1 1 1;
+#X obj 283 27 tgl 15 0 empty \$0-Dead_Cell_4 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 56 131 tgl 15 0 empty \$0-Dead_Cell_5 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 131 131 tgl 15 0 empty \$0-Dead_Cell_6 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 207 131 tgl 15 0 empty \$0-Dead_Cell_7 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 283 131 tgl 15 0 empty \$0-Dead_Cell_8 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 56 235 ofelia d -k \$0-dCells;
+#A __set local a = require("\$0-main") \; function ofelia.list(l) \;
+if l[2] == 1 then \; a.Dead_Cells[l[1]] = true \; else \; a.Dead_Cells[l[1]]
+= nil \; end \; end \;;
+#X msg 56 68 1;
+#X obj 56 47 t b f;
+#X obj 56 89 pack;
+#X obj 131 47 t b f;
+#X obj 131 89 pack;
+#X msg 131 68 2;
+#X obj 207 47 t b f;
+#X obj 207 89 pack;
+#X msg 207 68 3;
+#X obj 283 47 t b f;
+#X obj 283 89 pack;
+#X msg 283 68 4;
+#X obj 56 151 t b f;
+#X obj 56 193 pack;
+#X msg 56 172 5;
+#X obj 131 151 t b f;
+#X obj 131 193 pack;
+#X msg 131 172 6;
+#X obj 207 151 t b f;
+#X obj 207 193 pack;
+#X msg 207 173 7;
+#X obj 283 151 t b f;
+#X obj 283 193 pack;
+#X msg 283 173 8;
+#X obj 56 110 s \$0-dCells;
+#X obj 131 110 s \$0-dCells;
+#X obj 207 110 s \$0-dCells;
+#X obj 283 110 s \$0-dCells;
+#X obj 56 214 s \$0-dCells;
+#X obj 131 214 s \$0-dCells;
+#X obj 207 214 s \$0-dCells;
+#X obj 283 214 s \$0-dCells;
+#X connect 0 0 10 0;
+#X connect 1 0 12 0;
+#X connect 2 0 15 0;
+#X connect 3 0 18 0;
+#X connect 4 0 21 0;
+#X connect 5 0 24 0;
+#X connect 6 0 27 0;
+#X connect 7 0 30 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 10 1 11 1;
+#X connect 11 0 33 0;
+#X connect 12 0 14 0;
+#X connect 12 1 13 1;
+#X connect 13 0 34 0;
+#X connect 14 0 13 0;
+#X connect 15 0 17 0;
+#X connect 15 1 16 1;
+#X connect 16 0 35 0;
+#X connect 17 0 16 0;
+#X connect 18 0 20 0;
+#X connect 18 1 19 1;
+#X connect 19 0 36 0;
+#X connect 20 0 19 0;
+#X connect 21 0 23 0;
+#X connect 21 1 22 1;
+#X connect 22 0 37 0;
+#X connect 23 0 22 0;
+#X connect 24 0 26 0;
+#X connect 24 1 25 1;
+#X connect 25 0 38 0;
+#X connect 26 0 25 0;
+#X connect 27 0 29 0;
+#X connect 27 1 28 1;
+#X connect 28 0 39 0;
+#X connect 29 0 28 0;
+#X connect 30 0 32 0;
+#X connect 30 1 31 1;
+#X connect 31 0 40 0;
+#X connect 32 0 31 0;
+#X restore 100 74 pd Dead_Cells;
+#X restore 526 381 pd conway;
+#X obj 340 282 nbx 5 14 1 100000 0 1 \$0-gridNumY \$0-gridNumYpreset
+Grid_Y 0 -8 0 10 -257985 -1 -1 50 256;
+#X obj 281 282 nbx 5 14 1 100000 0 1 \$0-gridNumX \$0-gridNumXpreset
+Grid_X 0 -8 0 10 -257985 -1 -1 75 256;
+#X obj 144 177 hradio 15 1 1 16 \$0-Pattern empty Pattern 0 -8 0 10
+-257985 -1 -1 1;
+#X msg 526 193 gridNumX \$1 \, gridNumY \$2 \, gridSize;
+#X obj 526 172 pack;
+#X obj 546 147 t b f;
+#X connect 24 0 50 0;
+#X connect 25 0 51 0;
+#X connect 27 0 28 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 35 0 42 0;
+#X connect 36 0 35 0;
+#X connect 37 0 43 0;
+#X connect 38 0 44 0;
+#X connect 39 0 38 0;
+#X connect 40 0 37 0;
+#X connect 49 0 29 0;
+#X connect 50 0 49 0;
+#X connect 51 0 50 0;
+#X connect 51 1 50 1;
+#X coords 0 0 1 1 500 500 1 10 10;
+#X restore 10 10 pd \$0-grid;
