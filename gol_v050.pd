@@ -221,16 +221,16 @@ x - a.gridNumY + y - 1] == true then \; a.matrix[a.gridNumY * x - a.gridNumY
 ~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; color(0)
 \; \; a.fboCells:beginFbo() \; ofClear(0) \; for k = 1 \, #ofelia.presetList
 do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
-// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
-* a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
-\, a.gridSizeY) \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
+// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; for
+i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x
++ i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
 \; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
-- 1 \; end \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end \;
-\; end \;;
+- 1 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY -
+a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end \; a.fboCells:endFbo()
+\; \; else \; a.Reset() \; end \; \; end \;;
 #X obj 106 115 ofelia d -k \$0-getPreset;
 #A __set local a = require("\$0-main") \; \; local rectangle \, color
 = ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
@@ -238,23 +238,26 @@ do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
 ~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; color(0)
 \; \; a.fboCells:beginFbo() \; ofClear(0) \; for k = 1 \, #ofelia.presetList
 do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
-// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
-* a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
-\, a.gridSizeY) \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
+// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; for
+i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x
++ i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
 \; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
-- 1 \; end \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end \;
-\; end \;;
+- 1 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY -
+a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end \; a.fboCells:endFbo()
+\; \; else \; a.Reset() \; end \; \; end \;;
 #X obj 44 162 ofelia d -c11 -k \$0-setPreset;
 #A __set local a = require("\$0-main") \; \; function ofelia.bang()
 \; local tab = {} \; tab[1] = a.gridNumX \; tab[2] = a.gridNumY \;
 for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 \; return tab \; end \;;
 #X obj 259 95 ofelia d -c11 -k \$0-setPresetCopy;
-#A __set;
+#A __set local a = require("\$0-main") \; \; function ofelia.bang()
+\; local tab = {} \; tab[1] = a.gridNumX \; tab[2] = a.gridNumY \;
+for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
+\; return tab \; end \;;
 #X obj 44 225 text define \$0-presetCopy;
 #X obj 466 220 text set \$0-presetCopy 100;
 #X obj 260 177 text get \$0-presetCopy;
