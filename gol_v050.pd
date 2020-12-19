@@ -1,4 +1,4 @@
-#N canvas 1238 68 523 533 10;
+#N canvas 1243 69 523 533 10;
 #N canvas 1096 124 781 528 \$0-grid 0;
 #X obj 10 10 cnv 15 500 500 empty empty empty 20 12 0 14 -257985 -66577
 0;
@@ -52,7 +52,7 @@
 0 10 -257985 -1 -1 75 256;
 #X obj 546 128 nbx 5 14 1 1000 0 0 empty \$0-gridNumY gridNumY 0 -8
 0 10 -257985 -1 -1 50 256;
-#X obj 526 339 ofelia d -k \$0-main;
+#X obj 526 297 ofelia d -k \$0-main;
 #A __set if type(window) ~= "userdata" then \; window = ofWindow()
 \; end \; \; \; local a = ofelia \; local canvas = ofCanvas(this) \;
 local clock = ofClock(this \, "setup") \; local fontDir = canvas:getDir()
@@ -107,8 +107,6 @@ for y = 1 \, a.gridNumY +1 do \; local posX \, posY = (x - 1) * a.gridSizeX
 \; a.fboCells:endFbo() \; \; end \; \; \; function a.Reset() \; \;
 a.nMatrix = {} \; a.matrix = {} \; a.fboCells:beginFbo() \; ofClear(0)
 \; a.fboCells:endFbo() \; \; end \; \;;
-#X msg 526 235 gridNumY \$1 \, gridSize;
-#X obj 526 256 s \$0-main;
 #X obj 526 214 s \$0-main;
 #N canvas 710 613 662 286 pattern 0;
 #X obj 253 75 bng 15 250 50 0 empty \$0-Copy_Pattern Copy_Pattern 17
@@ -285,11 +283,11 @@ a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
 #X connect 22 1 24 0;
 #X connect 23 0 22 0;
 #X connect 24 0 19 0;
-#X restore 526 360 pd pattern;
-#X obj 526 277 bng 15 250 50 0 empty \$0-Reset Reset 17 7 0 10 -257985
+#X restore 526 318 pd pattern;
+#X obj 526 235 bng 15 250 50 0 empty \$0-Reset Reset 17 7 0 10 -257985
 -1 -1;
-#X msg 526 297 Reset;
-#X obj 526 318 s \$0-main;
+#X msg 526 255 Reset;
+#X obj 526 276 s \$0-main;
 #X obj 212 311 tgl 15 1 \$0-Sequence empty Sequence 17 7 0 10 -257985
 -1 -1 0 1;
 #X msg 671 380 interval \$1;
@@ -523,7 +521,7 @@ if l[2] == 1 then \; a.Dead_Cells[l[1]] = true \; else \; a.Dead_Cells[l[1]]
 #X connect 31 0 40 0;
 #X connect 32 0 31 0;
 #X restore 100 74 pd Dead_Cells;
-#X restore 526 381 pd conway;
+#X restore 526 339 pd conway;
 #X obj 340 282 nbx 5 14 1 100000 0 1 \$0-gridNumY \$0-gridNumYpreset
 Grid_Y 0 -8 0 10 -257985 -1 -1 50 256;
 #X obj 281 282 nbx 5 14 1 100000 0 1 \$0-gridNumX \$0-gridNumXpreset
@@ -533,20 +531,19 @@ Grid_X 0 -8 0 10 -257985 -1 -1 75 256;
 #X msg 526 193 gridNumX \$1 \, gridNumY \$2 \, gridSize;
 #X obj 526 172 pack;
 #X obj 546 147 t b f;
-#X connect 24 0 50 0;
-#X connect 25 0 51 0;
-#X connect 27 0 28 0;
-#X connect 31 0 32 0;
-#X connect 32 0 33 0;
-#X connect 35 0 42 0;
-#X connect 36 0 35 0;
-#X connect 37 0 43 0;
-#X connect 38 0 44 0;
-#X connect 39 0 38 0;
-#X connect 40 0 37 0;
-#X connect 49 0 29 0;
-#X connect 50 0 49 0;
-#X connect 51 0 50 0;
-#X connect 51 1 50 1;
+#X connect 24 0 48 0;
+#X connect 25 0 49 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 33 0 40 0;
+#X connect 34 0 33 0;
+#X connect 35 0 41 0;
+#X connect 36 0 42 0;
+#X connect 37 0 36 0;
+#X connect 38 0 35 0;
+#X connect 47 0 27 0;
+#X connect 48 0 47 0;
+#X connect 49 0 48 0;
+#X connect 49 1 48 1;
 #X coords 0 0 1 1 500 500 1 10 10;
 #X restore 10 10 pd \$0-grid;
