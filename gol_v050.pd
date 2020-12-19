@@ -310,14 +310,14 @@ for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 x \, y \, i \, j \, k \, v \, count = 0 \, 0 \, 0 \, 0 \, 0 \, 0 \,
 0 \; \; function a.conway() \; \; nMatrixCopy = {} \; count = 0 \;
 for k \, v in pairs (a.nMatrix) do \; if a.nMatrix[k] ~= 0 or a.matrix[k]
-~= nil then \; nMatrixCopy[k] = v \; count = count + 1 \; end \; end
-\; print("calculated cells:" \, count) \; count = 0 \; \; a.fboCells:beginFbo()
-\; for k \, v in pairs (nMatrixCopy) do \; x = k // a.gridNumY + 1
-\; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[nMatrixCopy[k]] ==
-nil and a.matrix[k] == true then \; a.matrix[k] = nil \; for i = -2
-\, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY * ((x + i) %
-a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x +
-i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end \; a.nMatrix[k]
+~= nil then \; nMatrixCopy[k] = v \; count = count + 1 \; else \; a.nMatrix[k]
+= nil \; end \; end \; print("calculated cells:" \, count) \; count
+= 0 \; \; a.fboCells:beginFbo() \; for k \, v in pairs (nMatrixCopy)
+do \; x = k // a.gridNumY + 1 \; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[nMatrixCopy[k]]
+== nil and a.matrix[k] == true then \; a.matrix[k] = nil \; for i =
+-2 \, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY * ((x + i)
+% a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x
++ i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end \; a.nMatrix[k]
 = a.nMatrix[k] + 1 \; count = count + 1 \; color(255) \; rectangle(x
 * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
 \, a.gridSizeY) \; \; elseif a.Dead_Cells[nMatrixCopy[k]] == true and
