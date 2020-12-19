@@ -1,5 +1,5 @@
 #N canvas 1243 69 523 533 10;
-#N canvas 1096 124 781 528 \$0-grid 0;
+#N canvas 1075 80 781 528 \$0-grid 0;
 #X obj 10 10 cnv 15 500 500 empty empty empty 20 12 0 14 -257985 -66577
 0;
 #X obj 35 20 cnv 15 450 480 empty empty Game_of_Life 120 30 0 30 -4032
@@ -307,14 +307,15 @@ for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 \; local rectangle \, color = ofDrawRectangle \, ofSetColor \; local
 x \, y \, i \, j \, k \, v \, count = 0 \, 0 \, 0 \, 0 \, 0 \, 0 \,
 0 \; \; function a.conway() \; \; nMatrixCopy = {} \; count = 0 \;
-for k \, v in pairs (a.nMatrix) do \; nMatrixCopy[k] = v \; count =
-count + 1 \; end \; print("calculated cells:" \, count) \; count =
-0 \; \; a.fboCells:beginFbo() \; for k \, v in pairs (nMatrixCopy)
-do \; x = k // a.gridNumY + 1 \; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[nMatrixCopy[k]]
-== nil and a.matrix[k] == true then \; a.matrix[k] = nil \; for i =
--2 \, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY * ((x + i)
-% a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x
-+ i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end \; a.nMatrix[k]
+for k \, v in pairs (a.nMatrix) do \; if a.nMatrix[k] ~= 0 or a.matrix[k]
+~= nil then \; nMatrixCopy[k] = v \; count = count + 1 \; end \; end
+\; print("calculated cells:" \, count) \; count = 0 \; \; a.fboCells:beginFbo()
+\; for k \, v in pairs (nMatrixCopy) do \; x = k // a.gridNumY + 1
+\; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[nMatrixCopy[k]] ==
+nil and a.matrix[k] == true then \; a.matrix[k] = nil \; for i = -2
+\, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY * ((x + i) %
+a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x +
+i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end \; a.nMatrix[k]
 = a.nMatrix[k] + 1 \; count = count + 1 \; color(255) \; rectangle(x
 * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX
 \, a.gridSizeY) \; \; elseif a.Dead_Cells[nMatrixCopy[k]] == true and
@@ -327,9 +328,7 @@ i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
 \; a.nMatrix[k] = a.nMatrix[k] - 1 \; count = count + 1 \; color(0)
 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY
 \, a.gridSizeX \, a.gridSizeY) \; end \; \; end \; a.fboCells:endFbo()
-\; \; for k \, v in pairs (a.nMatrix) do \; if a.nMatrix[k] == 0 and
-a.matrix[k] == nil then \; a.nMatrix[k] = nil \; end \; end \; \; print("changed
-cells:" \, count) \; end \; \;;
+\; \; \; print("changed cells:" \, count) \; end \; \;;
 #N canvas 39 693 394 289 Living_Cells 0;
 #X obj 56 27 tgl 15 0 empty \$0-Living_Cell_1 empty 17 7 0 10 -204786
 -1 -1 0 1;
