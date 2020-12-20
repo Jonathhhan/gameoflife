@@ -49,9 +49,9 @@
 #X obj 148 311 bng 15 250 50 0 \$0-Iterate empty Iterate 17 7 0 10
 -257985 -1 -1;
 #X obj 526 94 nbx 5 14 1 1000 0 0 empty \$0-gridNumX gridNumX 0 -8
-0 10 -257985 -1 -1 300 256;
+0 10 -257985 -1 -1 75 256;
 #X obj 546 128 nbx 5 14 1 1000 0 0 empty \$0-gridNumY gridNumY 0 -8
-0 10 -257985 -1 -1 200 256;
+0 10 -257985 -1 -1 50 256;
 #X obj 526 297 ofelia d -k \$0-main;
 #A __set if type(window) ~= "userdata" then \; window = ofWindow()
 \; end \; \; \; local a = ofelia \; local canvas = ofCanvas(this) \;
@@ -115,7 +115,7 @@ x - a.gridNumY + y - 1] == true then \; a.matrix[a.gridNumY * x - a.gridNumY
 #X obj 44 142 bng 15 250 50 0 empty \$0-Save_Pattern Save_Pattern 17
 7 0 10 -257985 -1 -1;
 #X obj 79 32 hradio 15 1 0 8 empty \$0-Pattern Pattern 0 -8 0 10 -257985
--1 -1 5;
+-1 -1 1;
 #X obj 44 204 text define -k \$0-preset;
 #A set 150 100 7552 7553 6947 7748 6949 7847 7849 7947 7148 7949 7343
 7344 7442 7544 7445 8048 7543 7352 7353 6848 7451 7047 7049 7454 7455
@@ -185,7 +185,6 @@ for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 \; return tab \; end \;;
 #X obj 44 225 text define \$0-presetCopy;
-#X obj 466 220 text set \$0-presetCopy 100;
 #X obj 260 177 text get \$0-presetCopy;
 #X obj 259 115 text set \$0-presetCopy;
 #N canvas 711 206 410 345 routeList 0;
@@ -256,15 +255,16 @@ for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 #X connect 12 1 4 0;
 #X connect 14 0 11 0;
 #X restore 260 198 pd routeList;
+#X obj 466 220 text set \$0-preset 100;
 #X connect 0 0 19 0;
 #X connect 1 0 8 0;
 #X connect 2 0 18 0;
 #X connect 3 0 6 0;
-#X connect 5 0 24 0;
+#X connect 5 0 23 0;
 #X connect 6 0 7 1;
 #X connect 6 1 5 0;
-#X connect 8 0 22 0;
-#X connect 9 0 21 0;
+#X connect 8 0 21 0;
+#X connect 9 0 25 0;
 #X connect 11 0 9 0;
 #X connect 12 0 11 0;
 #X connect 13 0 12 0;
@@ -272,10 +272,10 @@ for k \, v in pairs (a.matrix) do \; table.insert(tab \, k) \; end
 #X connect 14 0 13 0;
 #X connect 15 0 10 0;
 #X connect 18 0 7 0;
-#X connect 19 0 23 0;
-#X connect 22 0 25 0;
-#X connect 24 0 17 0;
-#X connect 25 0 16 0;
+#X connect 19 0 22 0;
+#X connect 21 0 24 0;
+#X connect 23 0 17 0;
+#X connect 24 0 16 0;
 #X restore 526 318 pd pattern;
 #X obj 526 235 bng 15 250 50 0 empty \$0-Reset Reset 17 7 0 10 -257985
 -1 -1;
@@ -515,11 +515,11 @@ i) % a.gridNumX) + (y + j) % a.gridNumY] = 1 \; else \; a.nMatrix[a.gridNumY
 #X restore 100 74 pd Dead_Cells;
 #X restore 526 339 pd conway;
 #X obj 340 282 nbx 5 14 1 100000 0 1 \$0-gridNumY \$0-gridNumYpreset
-Grid_Y 0 -8 0 10 -257985 -1 -1 200 256;
+Grid_Y 0 -8 0 10 -257985 -1 -1 50 256;
 #X obj 281 282 nbx 5 14 1 100000 0 1 \$0-gridNumX \$0-gridNumXpreset
-Grid_X 0 -8 0 10 -257985 -1 -1 300 256;
+Grid_X 0 -8 0 10 -257985 -1 -1 75 256;
 #X obj 144 177 hradio 15 1 1 16 \$0-Pattern empty Pattern 0 -8 0 10
--257985 -1 -1 5;
+-257985 -1 -1 1;
 #X msg 526 193 gridNumX \$1 \, gridNumY \$2 \, gridSize;
 #X obj 526 172 pack;
 #X obj 546 147 t b f;
