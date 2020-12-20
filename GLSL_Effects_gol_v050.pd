@@ -1,4 +1,4 @@
-#N struct 1013-square float x float y float number;
+#N struct 1004-square float x float y float number;
 #N canvas 1237 69 633 849 10;
 #X declare -path ofelia;
 #N canvas 860 34 1036 851 interface 0;
@@ -912,56 +912,56 @@ Amount 0 -8 0 10 -257985 -1 -1 -0.68 256;
 #X connect 34 1 22 0;
 #X restore 606 784 pd dataStructureFun;
 #N canvas 459 409 884 507 \$0-paint 0;
-#X scalar 1013-square 0 0 376 \;;
-#X scalar 1013-square 20 0 376 \;;
-#X scalar 1013-square 40 0 880 \;;
-#X scalar 1013-square 60 0 376 \;;
-#X scalar 1013-square 80 0 688 \;;
-#X scalar 1013-square 100 0 688 \;;
-#X scalar 1013-square 120 0 880 \;;
-#X scalar 1013-square 140 0 840 \;;
-#X scalar 1013-square 160 0 840 \;;
-#X scalar 1013-square 180 0 376 \;;
-#X scalar 1013-square 0 20 840 \;;
-#X scalar 1013-square 20 20 840 \;;
-#X scalar 1013-square 40 20 376 \;;
-#X scalar 1013-square 60 20 840 \;;
-#X scalar 1013-square 80 20 880 \;;
-#X scalar 1013-square 100 20 840 \;;
-#X scalar 1013-square 120 20 376 \;;
-#X scalar 1013-square 140 20 840 \;;
-#X scalar 1013-square 160 20 880 \;;
-#X scalar 1013-square 180 20 840 \;;
-#X scalar 1013-square 0 40 688 \;;
-#X scalar 1013-square 20 40 840 \;;
-#X scalar 1013-square 40 40 376 \;;
-#X scalar 1013-square 60 40 688 \;;
-#X scalar 1013-square 80 40 840 \;;
-#X scalar 1013-square 100 40 840 \;;
-#X scalar 1013-square 120 40 688 \;;
-#X scalar 1013-square 140 40 376 \;;
-#X scalar 1013-square 160 40 688 \;;
-#X scalar 1013-square 180 40 688 \;;
-#X scalar 1013-square 0 60 840 \;;
-#X scalar 1013-square 20 60 376 \;;
-#X scalar 1013-square 40 60 840 \;;
-#X scalar 1013-square 60 60 688 \;;
-#X scalar 1013-square 80 60 688 \;;
-#X scalar 1013-square 100 60 840 \;;
-#X scalar 1013-square 120 60 840 \;;
-#X scalar 1013-square 140 60 376 \;;
-#X scalar 1013-square 160 60 688 \;;
-#X scalar 1013-square 180 60 376 \;;
-#X scalar 1013-square 0 80 376 \;;
-#X scalar 1013-square 20 80 376 \;;
-#X scalar 1013-square 40 80 880 \;;
-#X scalar 1013-square 60 80 880 \;;
-#X scalar 1013-square 80 80 688 \;;
-#X scalar 1013-square 100 80 376 \;;
-#X scalar 1013-square 120 80 880 \;;
-#X scalar 1013-square 140 80 840 \;;
-#X scalar 1013-square 160 80 840 \;;
-#X scalar 1013-square 180 80 376 \;;
+#X scalar 1004-square 0 0 376 \;;
+#X scalar 1004-square 20 0 840 \;;
+#X scalar 1004-square 40 0 880 \;;
+#X scalar 1004-square 60 0 880 \;;
+#X scalar 1004-square 80 0 376 \;;
+#X scalar 1004-square 100 0 840 \;;
+#X scalar 1004-square 120 0 688 \;;
+#X scalar 1004-square 140 0 880 \;;
+#X scalar 1004-square 160 0 840 \;;
+#X scalar 1004-square 180 0 880 \;;
+#X scalar 1004-square 0 20 376 \;;
+#X scalar 1004-square 20 20 880 \;;
+#X scalar 1004-square 40 20 376 \;;
+#X scalar 1004-square 60 20 880 \;;
+#X scalar 1004-square 80 20 840 \;;
+#X scalar 1004-square 100 20 376 \;;
+#X scalar 1004-square 120 20 880 \;;
+#X scalar 1004-square 140 20 376 \;;
+#X scalar 1004-square 160 20 376 \;;
+#X scalar 1004-square 180 20 840 \;;
+#X scalar 1004-square 0 40 376 \;;
+#X scalar 1004-square 20 40 688 \;;
+#X scalar 1004-square 40 40 376 \;;
+#X scalar 1004-square 60 40 840 \;;
+#X scalar 1004-square 80 40 840 \;;
+#X scalar 1004-square 100 40 376 \;;
+#X scalar 1004-square 120 40 688 \;;
+#X scalar 1004-square 140 40 880 \;;
+#X scalar 1004-square 160 40 840 \;;
+#X scalar 1004-square 180 40 880 \;;
+#X scalar 1004-square 0 60 688 \;;
+#X scalar 1004-square 20 60 376 \;;
+#X scalar 1004-square 40 60 688 \;;
+#X scalar 1004-square 60 60 688 \;;
+#X scalar 1004-square 80 60 880 \;;
+#X scalar 1004-square 100 60 840 \;;
+#X scalar 1004-square 120 60 880 \;;
+#X scalar 1004-square 140 60 376 \;;
+#X scalar 1004-square 160 60 880 \;;
+#X scalar 1004-square 180 60 688 \;;
+#X scalar 1004-square 0 80 688 \;;
+#X scalar 1004-square 20 80 840 \;;
+#X scalar 1004-square 40 80 840 \;;
+#X scalar 1004-square 60 80 880 \;;
+#X scalar 1004-square 80 80 688 \;;
+#X scalar 1004-square 100 80 688 \;;
+#X scalar 1004-square 120 80 840 \;;
+#X scalar 1004-square 140 80 688 \;;
+#X scalar 1004-square 160 80 840 \;;
+#X scalar 1004-square 180 80 688 \;;
 #X coords 0 0 199 99 200 100 2 0 0;
 #X restore 165 60 pd \$0-paint;
 #X obj 606 653 declare -path ofelia;
@@ -1741,10 +1741,10 @@ do \; x = k // a.gridNumY + 1 \; y = k % a.gridNumY + 1 \; \; if a.Living_Cells[
 a.matrix[k] == nil then \; a.matrix[k] = true \; for i = -2 \, 0 do
 \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
 + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY * ((x +
-i) % a.gridNumX) + (y + j) % a.gridNumY] = 1 \; else \; a.nMatrix[a.gridNumY
+i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
 * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
-\; end \; a.nMatrix[k] = a.nMatrix[k] - 1 \; count = count + 1 \; color(0)
+\; a.nMatrix[k] = a.nMatrix[k] - 1 \; count = count + 1 \; color(0)
 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY
 \, a.gridSizeX \, a.gridSizeY) \; end \; \; end \; a.fboCells:endFbo()
 \; \; print("changed cells:" \, count) \; end \; \;;
