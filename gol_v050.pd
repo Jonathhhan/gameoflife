@@ -78,25 +78,26 @@ if ofelia.sequence == 1 then \; currentTime = ofGetElapsedTimeMillis()
 \, 0) \; a.fboLines:draw(0 \, 0) \; color(0) \; printInterval:drawString("ms:"..printTime
 \, 80 \, 750) \; end \; \; \; function a.mousePressed() \; \; x = (ofGetMouseX()
 + a.gridSizeX) // a.gridSizeX \; y = (ofGetMouseY() + a.gridSizeY)
-// a.gridSizeY \; a.fboCells:beginFbo() \; if a.matrix[a.gridNumY *
-x - a.gridNumY + y - 1] == true then \; a.matrix[a.gridNumY * x - a.gridNumY
-+ y - 1] = nil \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] - 1 \; end \; end
-\; a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1] = a.nMatrix[a.gridNumY
-* x - a.gridNumY + y - 1] + 1 \; color(255) \; rectangle(x * a.gridSizeX
-- a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY)
-\; \; else \; a.matrix[a.gridNumY * x - a.gridNumY + y - 1] = true
-\; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
-\; a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1] = a.nMatrix[a.gridNumY
-* x - a.gridNumY + y - 1] - 1 \; color(0) \; rectangle(x * a.gridSizeX
-- a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY)
-\; \; end \; a.fboCells:endFbo() \; end \; \; \; function a.gridSize()
-\; \; ofSetLineWidth(2) \; a.matrix = {} \; a.nMatrix = {} \; a.gridSizeX
+// a.gridSizeY \; \; a.fboCells:beginFbo() \; \; if a.matrix[a.gridNumY
+* x - a.gridNumY + y - 1] == true then \; a.matrix[a.gridNumY * x -
+a.gridNumY + y - 1] = nil \; for i = -2 \, 0 do \; for j = -2 \, 0
+do \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
+= a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
+- 1 \; end \; end \; a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1]
+= a.nMatrix[a.gridNumY * x - a.gridNumY + y - 1] + 1 \; color(255)
+\; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY - a.gridSizeY
+\, a.gridSizeX \, a.gridSizeY) \; \; else \; a.matrix[a.gridNumY *
+x - a.gridNumY + y - 1] = true \; for i = -2 \, 0 do \; for j = -2
+\, 0 do \; if a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y +
+j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY * ((x +
+i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x
++ i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end \; a.nMatrix[a.gridNumY
+* x - a.gridNumY + y - 1] = a.nMatrix[a.gridNumY * x - a.gridNumY +
+y - 1] - 1 \; color(0) \; rectangle(x * a.gridSizeX - a.gridSizeX \,
+y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end
+\; \; a.fboCells:endFbo() \; end \; \; \; function a.gridSize() \;
+\; ofSetLineWidth(2) \; a.matrix = {} \; a.nMatrix = {} \; a.gridSizeX
 \, a.gridSizeY = ofGetWidth() / a.gridNumX \, ofGetHeight() / a.gridNumY
 \; \; a.fboLines:beginFbo() \; ofClear(0) \; ofSetColor(0) \; for x
 = 1 \, a.gridNumX +1 do \; for y = 1 \, a.gridNumY +1 do \; local posX
