@@ -146,8 +146,9 @@ y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end
 = ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
 = 0 \, 0 \, 0 \, 0 \, 0 \; ofelia.presetList = {} \; \; function M.bang()
 \; \; if ofelia.presetList ~= nil then \; a.nMatrix = {} \; a.matrix
-= {} \; count = 0 \; color(0) \; \; a.fboCells:beginFbo() \; ofClear(0)
-\; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
+= {} \; count = 0 \; color(0) \; if type(ofelia.presetList) ~= "table"
+then \; ofelia.presetList = {ofelia.presetList} \; end \; \; a.fboCells:beginFbo()
+\; ofClear(0) \; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
 = true \; x = ofelia.presetList[k] // a.gridNumY + 1 \; y = ofelia.presetList[k]
 % a.gridNumY + 1 \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if
 a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
@@ -164,8 +165,9 @@ end \;;
 = ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
 = 0 \, 0 \, 0 \, 0 \, 0 \; ofelia.presetList = {} \; \; function M.bang()
 \; \; if ofelia.presetList ~= nil then \; a.nMatrix = {} \; a.matrix
-= {} \; count = 0 \; color(0) \; \; a.fboCells:beginFbo() \; ofClear(0)
-\; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
+= {} \; count = 0 \; color(0) \; if type(ofelia.presetList) ~= "table"
+then \; ofelia.presetList = {ofelia.presetList} \; end \; \; a.fboCells:beginFbo()
+\; ofClear(0) \; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
 = true \; x = ofelia.presetList[k] // a.gridNumY + 1 \; y = ofelia.presetList[k]
 % a.gridNumY + 1 \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if
 a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
