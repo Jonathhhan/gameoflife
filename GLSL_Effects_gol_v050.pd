@@ -1,4 +1,4 @@
-#N struct 1010-square float x float y float number;
+#N struct 1004-square float x float y float number;
 #N canvas 1237 69 633 849 10;
 #X declare -path ofelia;
 #N canvas 860 34 1036 851 interface 0;
@@ -912,56 +912,56 @@ Amount 0 -8 0 10 -257985 -1 -1 -0.68 256;
 #X connect 34 1 22 0;
 #X restore 606 784 pd dataStructureFun;
 #N canvas 459 409 884 507 \$0-paint 0;
-#X scalar 1010-square 0 0 376 \;;
-#X scalar 1010-square 20 0 840 \;;
-#X scalar 1010-square 40 0 880 \;;
-#X scalar 1010-square 60 0 880 \;;
-#X scalar 1010-square 80 0 376 \;;
-#X scalar 1010-square 100 0 840 \;;
-#X scalar 1010-square 120 0 688 \;;
-#X scalar 1010-square 140 0 880 \;;
-#X scalar 1010-square 160 0 840 \;;
-#X scalar 1010-square 180 0 880 \;;
-#X scalar 1010-square 0 20 376 \;;
-#X scalar 1010-square 20 20 880 \;;
-#X scalar 1010-square 40 20 376 \;;
-#X scalar 1010-square 60 20 880 \;;
-#X scalar 1010-square 80 20 840 \;;
-#X scalar 1010-square 100 20 376 \;;
-#X scalar 1010-square 120 20 880 \;;
-#X scalar 1010-square 140 20 376 \;;
-#X scalar 1010-square 160 20 376 \;;
-#X scalar 1010-square 180 20 840 \;;
-#X scalar 1010-square 0 40 376 \;;
-#X scalar 1010-square 20 40 688 \;;
-#X scalar 1010-square 40 40 376 \;;
-#X scalar 1010-square 60 40 840 \;;
-#X scalar 1010-square 80 40 840 \;;
-#X scalar 1010-square 100 40 376 \;;
-#X scalar 1010-square 120 40 688 \;;
-#X scalar 1010-square 140 40 880 \;;
-#X scalar 1010-square 160 40 840 \;;
-#X scalar 1010-square 180 40 880 \;;
-#X scalar 1010-square 0 60 688 \;;
-#X scalar 1010-square 20 60 376 \;;
-#X scalar 1010-square 40 60 688 \;;
-#X scalar 1010-square 60 60 688 \;;
-#X scalar 1010-square 80 60 880 \;;
-#X scalar 1010-square 100 60 840 \;;
-#X scalar 1010-square 120 60 880 \;;
-#X scalar 1010-square 140 60 376 \;;
-#X scalar 1010-square 160 60 880 \;;
-#X scalar 1010-square 180 60 688 \;;
-#X scalar 1010-square 0 80 688 \;;
-#X scalar 1010-square 20 80 840 \;;
-#X scalar 1010-square 40 80 840 \;;
-#X scalar 1010-square 60 80 880 \;;
-#X scalar 1010-square 80 80 688 \;;
-#X scalar 1010-square 100 80 688 \;;
-#X scalar 1010-square 120 80 840 \;;
-#X scalar 1010-square 140 80 688 \;;
-#X scalar 1010-square 160 80 840 \;;
-#X scalar 1010-square 180 80 688 \;;
+#X scalar 1004-square 0 0 376 \;;
+#X scalar 1004-square 20 0 840 \;;
+#X scalar 1004-square 40 0 880 \;;
+#X scalar 1004-square 60 0 880 \;;
+#X scalar 1004-square 80 0 376 \;;
+#X scalar 1004-square 100 0 840 \;;
+#X scalar 1004-square 120 0 688 \;;
+#X scalar 1004-square 140 0 880 \;;
+#X scalar 1004-square 160 0 840 \;;
+#X scalar 1004-square 180 0 880 \;;
+#X scalar 1004-square 0 20 376 \;;
+#X scalar 1004-square 20 20 880 \;;
+#X scalar 1004-square 40 20 376 \;;
+#X scalar 1004-square 60 20 880 \;;
+#X scalar 1004-square 80 20 840 \;;
+#X scalar 1004-square 100 20 376 \;;
+#X scalar 1004-square 120 20 880 \;;
+#X scalar 1004-square 140 20 376 \;;
+#X scalar 1004-square 160 20 376 \;;
+#X scalar 1004-square 180 20 840 \;;
+#X scalar 1004-square 0 40 376 \;;
+#X scalar 1004-square 20 40 688 \;;
+#X scalar 1004-square 40 40 376 \;;
+#X scalar 1004-square 60 40 840 \;;
+#X scalar 1004-square 80 40 840 \;;
+#X scalar 1004-square 100 40 376 \;;
+#X scalar 1004-square 120 40 688 \;;
+#X scalar 1004-square 140 40 880 \;;
+#X scalar 1004-square 160 40 840 \;;
+#X scalar 1004-square 180 40 880 \;;
+#X scalar 1004-square 0 60 688 \;;
+#X scalar 1004-square 20 60 376 \;;
+#X scalar 1004-square 40 60 688 \;;
+#X scalar 1004-square 60 60 688 \;;
+#X scalar 1004-square 80 60 880 \;;
+#X scalar 1004-square 100 60 840 \;;
+#X scalar 1004-square 120 60 880 \;;
+#X scalar 1004-square 140 60 376 \;;
+#X scalar 1004-square 160 60 880 \;;
+#X scalar 1004-square 180 60 688 \;;
+#X scalar 1004-square 0 80 688 \;;
+#X scalar 1004-square 20 80 840 \;;
+#X scalar 1004-square 40 80 840 \;;
+#X scalar 1004-square 60 80 880 \;;
+#X scalar 1004-square 80 80 688 \;;
+#X scalar 1004-square 100 80 688 \;;
+#X scalar 1004-square 120 80 840 \;;
+#X scalar 1004-square 140 80 688 \;;
+#X scalar 1004-square 160 80 840 \;;
+#X scalar 1004-square 180 80 688 \;;
 #X coords 0 0 199 99 200 100 2 0 0;
 #X restore 165 60 pd \$0-paint;
 #X obj 606 653 declare -path ofelia;
@@ -1021,7 +1021,7 @@ Grid_X 0 -8 0 10 -257985 -1 -1 300 256;
 from selected channel with arrow keys. Select pause with space bar.
 Select data structure fun with key d.;
 #X obj 78 225 hradio 15 1 1 16 \$0-Pattern empty Pattern 0 -8 0 10
--257985 -1 -1 4;
+-257985 -1 -1 5;
 #X obj 660 70 nbx 5 14 1 1000 0 0 empty \$0-gridNumX gridNumX 0 -8
 0 10 -257985 -1 -1 300 256;
 #X obj 680 104 nbx 5 14 1 1000 0 0 empty \$0-gridNumY gridNumY 0 -8
@@ -1558,7 +1558,7 @@ CircleWarp \; FractTexture \; GaussianBlur \; GLSLdplctpix \; Grain
 #X obj 44 142 bng 15 250 50 0 empty \$0-Save_Pattern Save_Pattern 17
 7 0 10 -257985 -1 -1;
 #X obj 79 32 hradio 15 1 0 8 empty \$0-Pattern Pattern 0 -8 0 10 -257985
--1 -1 4;
+-1 -1 5;
 #X obj 44 204 text define -k \$0-preset;
 #A set 150 100 7552 7553 6947 7748 6949 7847 7849 7947 7148 7949 7343
 7344 7442 7544 7445 8048 7543 7352 7353 6848 7451 7047 7049 7454 7455
@@ -1620,37 +1620,39 @@ CircleWarp \; FractTexture \; GaussianBlur \; GLSLdplctpix \; Grain
 #X obj 260 219 ofelia d -k \$0-getPresetCopy;
 #A __set local a = require("\$0-main") \; \; local rectangle \, color
 = ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
-= 0 \, 0 \, 0 \, 0 \, 0 \; \; function M.bang() \; \; if ofelia.presetList
-~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; color(0)
-\; \; a.fboCells:beginFbo() \; ofClear(0) \; for k = 1 \, #ofelia.presetList
-do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
-// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; for
-i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x
-+ i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
-\; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
-- 1 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY -
-a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end \; a.fboCells:endFbo()
-\; \; else \; a.Reset() \; end \; \; end \;;
+= 0 \, 0 \, 0 \, 0 \, 0 \; ofelia.presetList = {} \; \; function M.bang()
+\; \; if ofelia.presetList ~= nil then \; a.nMatrix = {} \; a.matrix
+= {} \; count = 0 \; color(0) \; \; a.fboCells:beginFbo() \; ofClear(0)
+\; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
+= true \; x = ofelia.presetList[k] // a.gridNumY + 1 \; y = ofelia.presetList[k]
+% a.gridNumY + 1 \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if
+a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
+== nil then \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y +
+j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] + 1 \; end \; end \; a.nMatrix[ofelia.presetList[k]]
+= a.nMatrix[ofelia.presetList[k]] - 1 \; rectangle(x * a.gridSizeX
+- a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY)
+\; end \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end \; \;
+end \;;
 #X obj 106 115 ofelia d -k \$0-getPreset;
 #A __set local a = require("\$0-main") \; \; local rectangle \, color
 = ofDrawRectangle \, ofSetColor \; local x \, y \, i \, j \, count
-= 0 \, 0 \, 0 \, 0 \, 0 \; \; function M.bang() \; \; if ofelia.presetList
-~= nil then \; a.nMatrix = {} \; a.matrix = {} \; count = 0 \; color(0)
-\; \; a.fboCells:beginFbo() \; ofClear(0) \; for k = 1 \, #ofelia.presetList
-do \; a.matrix[ofelia.presetList[k]] = true \; x = ofelia.presetList[k]
-// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; for
-i = -2 \, 0 do \; for j = -2 \, 0 do \; if a.nMatrix[a.gridNumY * ((x
-+ i) % a.gridNumX) + (y + j) % a.gridNumY] == nil then \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY
-* ((x + i) % a.gridNumX) + (y + j) % a.gridNumY] + 1 \; end \; end
-\; a.nMatrix[ofelia.presetList[k]] = a.nMatrix[ofelia.presetList[k]]
-- 1 \; rectangle(x * a.gridSizeX - a.gridSizeX \, y * a.gridSizeY -
-a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end \; a.fboCells:endFbo()
-\; \; else \; a.Reset() \; end \; \; end \;;
+= 0 \, 0 \, 0 \, 0 \, 0 \; ofelia.presetList = {} \; \; function M.bang()
+\; \; if ofelia.presetList ~= nil then \; a.nMatrix = {} \; a.matrix
+= {} \; count = 0 \; color(0) \; \; a.fboCells:beginFbo() \; ofClear(0)
+\; for k = 1 \, #ofelia.presetList do \; a.matrix[ofelia.presetList[k]]
+= true \; x = ofelia.presetList[k] // a.gridNumY + 1 \; y = ofelia.presetList[k]
+% a.gridNumY + 1 \; for i = -2 \, 0 do \; for j = -2 \, 0 do \; if
+a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y + j) % a.gridNumY]
+== nil then \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX) + (y +
+j) % a.gridNumY] = 0 \; end \; a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] = a.nMatrix[a.gridNumY * ((x + i) % a.gridNumX)
++ (y + j) % a.gridNumY] + 1 \; end \; end \; a.nMatrix[ofelia.presetList[k]]
+= a.nMatrix[ofelia.presetList[k]] - 1 \; rectangle(x * a.gridSizeX
+- a.gridSizeX \, y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY)
+\; end \; a.fboCells:endFbo() \; \; else \; a.Reset() \; end \; \;
+end \;;
 #X obj 44 162 ofelia d -c11 -k \$0-setPreset;
 #A __set local a = require("\$0-main") \; \; function ofelia.bang()
 \; local tab = {} \; tab[1] = a.gridNumX \; tab[2] = a.gridNumY \;
