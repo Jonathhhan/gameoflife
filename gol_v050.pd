@@ -115,7 +115,7 @@ y * a.gridSizeY - a.gridSizeY \, a.gridSizeX \, a.gridSizeY) \; end
 17 7 0 10 -257985 -1 -1;
 #X obj 44 142 bng 15 250 50 0 empty \$0-Save_Pattern Save_Pattern 17
 7 0 10 -257985 -1 -1;
-#X obj 79 32 hradio 15 1 0 8 empty \$0-Pattern Pattern 0 -8 0 10 -257985
+#X obj 79 32 hradio 15 1 0 16 empty \$0-Pattern Pattern 0 -8 0 10 -257985
 -1 -1 1;
 #X obj 44 204 text define -k \$0-preset;
 #A set 150 100 7552 7553 6947 7748 6949 7847 7849 7947 7148 7949 7343
